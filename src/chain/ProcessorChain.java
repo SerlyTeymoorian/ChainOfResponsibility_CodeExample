@@ -7,24 +7,26 @@ import handlers.ZeroProcessor;
 
 public class ProcessorChain {
 	
-	private Processor c1; 
+	private Processor handler; 
 	
 	public ProcessorChain() {
 		
+		Processor handler1 = new NegativeProcessor(); 
+		
+		Processor handler2 = new ZeroProcessor(); 
+		
+		Processor handler3 = new PositiveProcessor();
+		
 		//handler pointing to NegativeProcessor 
-		c1 = new NegativeProcessor();
-		
-		Processor c2 = new ZeroProcessor(); 
-		
-		Processor c3 = new PositiveProcessor();
+		handler = handler1; 
 		
 		//setting up the chain 
-		c1.setNextChain(c2);
-		c2.setNextChain(c3);
+		handler1.setNextChain(handler2);
+		handler2.setNextChain(handler3);
 	}
 	
 	//return the root handler 
 	public Processor getProcessor() {
-		return c1; 
+		return handler; 
 	}
 }
